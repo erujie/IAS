@@ -184,6 +184,10 @@ $formStmt->close();
 <body>
     <div class="card">
 
+        <?php if (isset($_GET['timeout'])): ?>
+            <div class="error-msg">Session expired due to inactivity.</div>
+        <?php endif; ?>
+
         <?php if (!empty($error)): ?>
             <div class="error-msg"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
