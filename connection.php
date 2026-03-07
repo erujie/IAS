@@ -1,8 +1,10 @@
 <?php
+
+define('ENCRYPT_KEY', 'assassination_classroom_season_2');
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "ais";
+$dbname = "ias";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
