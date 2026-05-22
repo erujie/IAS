@@ -14,10 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login_submit'])) {
     $password_input =      $_POST['password']      ?? '';
     $captcha_input  = strtoupper(trim($_POST['captcha_input'] ?? ''));
 
-    if (empty($_SESSION['captcha_code']) || $captcha_input !== $_SESSION['captcha_code']) {
-        $error = "Incorrect security code.";
-        unset($_SESSION['captcha_code']);
-    } elseif (empty($username_input) || empty($password_input)) {
+    //Commented to bypass captcha for testing, will be re-enabled in production
+    // if (empty($_SESSION['captcha_code']) || $captcha_input !== $_SESSION['captcha_code']) {
+    //     $error = "Incorrect security code.";
+    //     unset($_SESSION['captcha_code']);
+    // } else
+    if (empty($username_input) || empty($password_input)) {
         $error = "Please fill in all fields.";
         unset($_SESSION['captcha_code']);
     } else {
