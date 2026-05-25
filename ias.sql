@@ -57,7 +57,7 @@ CREATE TABLE `menubar` (
 --
 
 INSERT INTO `menubar` (`id`, `menu`) VALUES
-(0, '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>Simple Sidebar</title>\r\n    <style>\r\n        * {\r\n            margin: 0;\r\n            padding: 0;\r\n            box-sizing: border-box;\r\n        }\r\n\r\n        body {\r\n            font-family: Arial, sans-serif;\r\n        }\r\n\r\n        /* Hidden checkbox */\r\n        #menu-toggle {\r\n            display: none;\r\n        }\r\n\r\n        /* Sidebar */\r\n        .sidebar {\r\n            position: fixed;\r\n            left: 0;\r\n            top: 0;\r\n            width: 250px;\r\n            height: 100%;\r\n            background: #333;\r\n            padding: 20px;\r\n            transition: 0.3s;\r\n        }\r\n\r\n        /* Hide sidebar when checkbox checked */\r\n        #menu-toggle:checked ~ .sidebar {\r\n            left: -250px;\r\n        }\r\n\r\n        .sidebar ul {\r\n            list-style: none;\r\n            margin-top: 60px;\r\n        }\r\n\r\n        .sidebar li {\r\n            margin-bottom: 5px;\r\n        }\r\n\r\n        .sidebar a {\r\n            color: white;\r\n            padding: 12px 15px;\r\n            display: block;\r\n            text-decoration: none;\r\n            border-radius: 5px;\r\n        }\r\n\r\n        .sidebar a:hover {\r\n            background: #555;\r\n        }\r\n\r\n        .active a {\r\n            background: #007bff;\r\n        }\r\n\r\n        /* Logout link */\r\n        .logout a {\r\n            color: #ff6b6b;\r\n        }\r\n\r\n        .logout a:hover {\r\n            background: #555;\r\n        }\r\n\r\n        /* Toggle Button */\r\n        .toggle-btn {\r\n            position: fixed;\r\n            left: 10px;\r\n            top: 10px;\r\n            background: #333;\r\n            color: white;\r\n            padding: 10px 15px;\r\n            font-size: 20px;\r\n            cursor: pointer;\r\n            border-radius: 5px;\r\n            z-index: 1000;\r\n        }\r\n\r\n        .toggle-btn:hover {\r\n            background: #555;\r\n        }\r\n\r\n        /* Content */\r\n        .content {\r\n            margin-left: 250px;\r\n            padding: 20px;\r\n            transition: 0.3s;\r\n        }\r\n\r\n        #menu-toggle:checked ~ .content {\r\n            margin-left: 0;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n\r\n    <input type=\"checkbox\" id=\"menu-toggle\">\r\n    <label for=\"menu-toggle\" class=\"toggle-btn\">☰</label>\r\n\r\n    <div class=\"sidebar\">\r\n        <ul>\r\n            <li class=\"active\"><a href=\"#\">Home</a></li>\r\n            <li><a href=\"#\">About</a></li>\r\n            <li><a href=\"#\">Services</a></li>\r\n            <li><a href=\"#\">Contact</a></li>\r\n            <li class=\"logout\"><a href=\"logout.php\">Logout</a></li>\r\n        </ul>\r\n    </div>\r\n\r\n    <div class=\"content\">\r\n        <h1>Home Page</h1>\r\n        <p>Welcome to the home page!</p>\r\n    </div>\r\n\r\n</body>\r\n</html>');
+(0, '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>Simple Sidebar</title>\r\n    <style>\r\n        * {\r\n            margin: 0;\r\n            padding: 0;\r\n            box-sizing: border-box;\r\n        }\r\n\r\n        body {\r\n            font-family: Arial, sans-serif;\r\n        }\r\n\r\n        /* Hidden checkbox */\r\n        #menu-toggle {\r\n            display: none;\r\n        }\r\n\r\n        /* Sidebar */\r\n        .sidebar {\rn            position: fixed;\n            left: 0;\n            top: 0;\n            width: 250px;\n            height: 100%;\n            background: #333;\n            padding: 20px;\n            transition: 0.3s;\n        }\n\n        /* Hide sidebar when checkbox checked */\n        #menu-toggle:checked ~ .sidebar {\n            left: -250px;\n        }\n\n        .sidebar ul {\n            list-style: none;\n            margin-top: 60px;\n        }\n\n        .sidebar li {\n            margin-bottom: 5px;\n        }\n\n        .sidebar a {\n            color: white;\n            padding: 12px 15px;\n            display: block;\n            text-decoration: none;\n            border-radius: 5px;\n        }\n\n        .sidebar a:hover {\n            background: #555;\n        }\n\n        .active a {\n            background: #007bff;\n        }\n\n        /* Logout link */\n        .logout a {\n            color: #ff6b6b;\n        }\n\n        .logout a:hover {\n            background: #555;\n        }\n\n        /* Toggle Button */\n        .toggle-btn {\n            position: fixed;\n            left: 10px;\n            top: 10px;\n            background: #333;\n            color: white;\n            padding: 10px 15px;\n            font-size: 20px;\n            cursor: pointer;\n            border-radius: 5px;\n            z-index: 1000;\n        }\n\n        .toggle-btn:hover {\n        }\n\n        </style>\n    </head>\n    <body>\n        <div class=\"toggle-btn\">☰</div>\n        <div class=\"sidebar\">\n            <ul>\n                <li><a href=\"index.php\" class=\"active\">Home</a></li>\n                <li><a href=\"about.php\">About</a></li>\n                <li><a href=\"services.php\">Services</a></li>\n                <li><a href=\"contact.php\">Contact</a></li>\n                <li><a href=\"faq.php\">FAQ</a></li>\n                <li class=\"logout\"><a href=\"logout.php\">Logout</a></li>\n            </ul>\n        </div>\n        <div class=\"content\">\n            <h2>Welcome to IAS Dashboard</h2>\n            <p>This is the main dashboard area.</p>\n        </div>\n    </body>\n</html>');
 
 -- --------------------------------------------------------
 
@@ -79,6 +79,25 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
 (1, 0x99f5f4350b50ee869f36a21cb7eb2345, 'erjay@gmail.com', '$2y$10$Uhm0tDYB4FvAmGYDhDaB7Ocpp3nJCbEOwuRP.GugcYhF7yDH3W67y', '2026-03-07 01:34:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `otps`
+--
+
+CREATE TABLE `otps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `code` varchar(6) NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `used_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `purpose` varchar(20) NOT NULL DEFAULT 'login_2fa',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `otps_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -105,6 +124,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `otps`
+--
+ALTER TABLE `otps`
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -119,6 +144,13 @@ ALTER TABLE `forms`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `otps`
+--
+ALTER TABLE `otps`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
