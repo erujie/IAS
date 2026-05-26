@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/connection.php';
+require_once __DIR__ . '/mailer.php';
 
 /**
  * Generate a 6-digit OTP code
@@ -26,12 +27,8 @@ function sendOtpEmail($userId, $email, $purpose = 'login_2fa') {
     $otpCode = generateOTP();
     
     // Calculate expiry (5 minutes from now)
-    $expiresAt = date('Y-m-d H:i:s', strtotime('+5 minutes'));
-    
-    // Insert OTP record
-    $stmt = $conn->prepare("INSERT INTO otps (user_id, code, expires_at, purpose) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("isss", $userId, $otpCode, $expiresAt, $purpose);
-    
+    $stmt = $conn->prepare("INSERT INTO otps (user_id, code, expires_at, purpose) VALUES (?, ?, NOW() + INTERVAL 5 MINUTE, ?)");
+    $stmt->bind_param("iss", $userId, $otpCode, $purpose);
     if (!$stmt->execute()) {
         $stmt->close();
         return ['success' => false, 'error' => 'Database error'];

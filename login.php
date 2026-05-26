@@ -93,7 +93,8 @@ else if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login_submit']))
         unset($_SESSION['captcha_code']);
     } else {
         unset($_SESSION['captcha_code']);
-        $stmt = $conn->prepare("SELECT id, password, username FROM users WHERE AES_DECRYPT(username, ?) = ?");
+        // ✅ FIX — add email to the SELECT
+        $stmt = $conn->prepare("SELECT id, password, email, username FROM users WHERE AES_DECRYPT(username, ?) = ?");
         $key  = ENCRYPT_KEY;
         $stmt->bind_param("ss", $key, $username_input);
         $stmt->execute();
@@ -115,6 +116,9 @@ else if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login_submit']))
                         $error = "Failed to send OTP: " . $otpResult['error'];
                         unset($_SESSION['pending_2fa']);
                         unset($_SESSION['pending_2fa_username']);
+                    } else {
+                        header("Location: login.php"); // ← add this redirect
+                        exit();
                     }
                 } else {
                     $error = "No email found for user.";
@@ -377,13 +381,13 @@ $formStmt->close();
                 </div>
 
                 <button type="submit" name="otp_submit" class="btn-login">Verify Code</button>
-                <button type="submit" name="otp_submit" value="1" name="resend_otp" class="btn-secondary">
+                <button type="submit" name="resend_otp" class="btn-secondary">
                     Resend Code
                 </button>
                 <div id="timer" class="timer"></div>
 
                 <div class="form-footer">
-                    Back to <a href="login.php">Login Page</a>
+                    Back to <a href="logout.php">Login Page</a>
                 </div>
             </form>
         <?php else: ?>

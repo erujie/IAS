@@ -37,6 +37,7 @@ function sendOTP($toEmail, $toName, $otpCode) {
         $mail->Body    = "Your one-time code is: $otpCode\n\nThis code expires in 5 minutes. Do not share it.";
 
         $mail->send();
+        $mail->smtpClose();
         return true;
     } catch (Exception $e) {
         error_log("Mailer Error: {$mail->ErrorInfo}");
